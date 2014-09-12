@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [ -n "$(find "$1" -maxdepth 1 -name '*.e' -print -quit)" ]; then
+if [ -n "$(find "$1" -maxdepth 10 -name '*.e' -print -quit)" ]; then
   echo "Eiffel" && exit 0
 else
   exit 1
