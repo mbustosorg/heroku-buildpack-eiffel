@@ -47,7 +47,7 @@ if [ ! -d $EC_DIR ]; then
 fi
 
 ISE_EIFFEL=$EC_DIR/Eiffel_14.05
-ISE_PLATFORM=$EC_PLATFORM
+ISE_PLATFORM=$EC_PLATFORMexport 
 PATH=$PATH:$ISE_EIFFEL/studio/spec/$ISE_PLATFORM/bin
 
 # add to slug 
@@ -56,8 +56,8 @@ cp -r $EC_DIR $BUILD_DIR
 echo "Eiffel Compiler installed" | indent
 
 echo "-----> Compiling"
-EC_CONFIG=$(find . -maxdepth 1 -name "*.ecf")
-EC_TARGET=$(sed -n 's/.*target name="\([A-z]*\).*/\1/p' <$EC_CONFIG)
+EC_CONFIG=$(find . -maxdepth 1 -name "*.ecf" -print -quit | head -n 1)
+EC_TARGET=$(sed -n 's/.*target name="\([A-z]*\).*/\1/p' <$EC_CONFIG | head -n 1)
 
 echo "-----> Compiling $EC_CONFIG for target $EC_TARGET"
 $ISE_EIFFEL/studio/spec/$ISE_PLATFORM/bin/ec -finalize -clean -config $EC_CONFIG -target $EC_TARGET
