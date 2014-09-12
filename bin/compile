@@ -19,8 +19,8 @@ function indent() {
 }
 
 # parse and derive params
-#EC_PLATFORM=macosx-x86-64
-EC_PLATFORM=linux-x86-64
+EC_PLATFORM=macosx-x86-64
+#EC_PLATFORM=linus-x86-64
 EC_ARCHIVE=Eiffel_14.05_gpl_95417-$EC_PLATFORM.tar.bz2
 EC_BUILD=http://sourceforge.net/projects/eiffelstudio/files/EiffelStudio%2014.05/Build_95417/
 BUILDPACK_DIR=$(cd $(dirname $0); cd ..; pwd) # absolute path of buildpack
@@ -54,6 +54,13 @@ export PATH=$PATH:$ISE_EIFFEL/studio/spec/$ISE_PLATFORM/bin
 cp -r $EC_DIR $BUILD_DIR
 
 echo "Eiffel Compiler installed" | indent
+
+
+export EC_CONFIG=$(find . -name "*.ecf")
+export EC_TARGET=$(sed -n 's/.*target name="\([A-z]*\).*/\1/p' <$EC_CONFIG)
+
+ec -finalize -clean -config $EC_CONFIG -target $EC_TARGET
+./EIFGENs/F_Code/finish_freezing
 
 #mkdir $CACHE_DIR/repos	     	      # should be under an if to avoid error
 #pushd $CACHE_DIR/repos
