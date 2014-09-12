@@ -1,0 +1,90 @@
+#!/usr/bin/env bash
+# bin/compile <build-dir> <cache-dir>
+
+set -x
+
+mktmpdir() {
+  dir=$(mktemp -t node-$1-XXXX)
+  rm -rf $dir
+  mkdir -p $dir
+  echo $dir
+}
+
+function indent() {
+  c='s/^/       /'
+  case $(uname) in
+    Darwin) sed -l "$c";;
+    *)      sed -u "$c";;
+  esac
+}
+
+# parse and derive params
+EC_PLATFORM=macosx-x86-64
+#EC_PLATFORM=linus-x86-64
+EC_ARCHIVE=Eiffel_14.05_gpl_95417-$EC_PLATFORM.tar.bz2
+EC_BUILD=http://sourceforge.net/projects/eiffelstudio/files/EiffelStudio%2014.05/Build_95417/
+BUILDPACK_DIR=$(cd $(dirname $0); cd ..; pwd) # absolute path of buildpack
+BUILD_DIR=$1
+CACHE_DIR=$2
+ENV_DIR=$3
+
+echo "-----> compile params: $BUILD_DIR $CACHE_DIR $ENV_DIR"
+
+if [ $RESET_CACHE ]; then
+  echo "-----> flushing cache"
+  rm -rf $CACHE_DIR/*
+fi
+
+EC_DIR="$CACHE_DIR/estudio"
+
+echo "-----> Installing Eiffel Compiler"
+if [ ! -d $EC_DIR ]; then
+    echo "-----> Fetching Eiffel Compiler"
+    mkdir -p $EC_DIR
+	curl -L -O $EC_BUILD$EC_ARCHIVE 
+	tar jxf $EC_ARCHIVE -C $EC_DIR
+	rm -rf $EC_ARCHIVE
+fi
+
+export ISE_EIFFEL=$EC_DIR/Eiffel_14.05
+export ISE_PLATFORM=$EC_PLATFORM
+export PATH=$PATH:$ISE_EIFFEL/studio/spec/$ISE_PLATFORM/bin
+
+# add to slug 
+cp -r $EC_DIR $BUILD_DIR
+
+echo "Eiffel Compiler installed" | indent
+
+#mkdir $CACHE_DIR/repos	     	      # should be under an if to avoid error
+#pushd $CACHE_DIR/repos
+
+#if [ -d $CACHE_DIR/repos/portableaserve ]; then
+#     echo 'aserve already present'
+#     pushd portableaserve
+#     git pull origin master
+#     popd
+#else 
+#    git clone git://github.com/mtravers/portableaserve.git
+#fi
+
+#if [ -d $CACHE_DIR/repos/wuwei ]; then
+#     echo 'wuwei already present'
+#     pushd wuwei
+#    git pull origin master
+#     popd
+#else 
+#    git clone git://github.com/mtravers/wuwei.git
+#fi
+
+#popd
+
+#export BUILDPACK_DIR
+#export CACHE_DIR
+#export BUILD_DIR
+#export CCL_DEFAULT_DIRECTORY=$EC_DIR
+
+#echo "-----> Starting build"
+#$CCL_DEFAULT_DIRECTORY/scripts/ccl64 -l "$BUILDPACK_DIR/setup/compile.lisp"
+#echo "-----> Build finished"
+
+#chmod a+x $BUILD_DIR/lispapp
