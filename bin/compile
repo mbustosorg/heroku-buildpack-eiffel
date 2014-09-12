@@ -46,19 +46,20 @@ if [ ! -d $EC_DIR ]; then
 	rm -rf $EC_ARCHIVE
 fi
 
-export ISE_EIFFEL=$EC_DIR/Eiffel_14.05
-export ISE_PLATFORM=$EC_PLATFORM
-export PATH=$PATH:$ISE_EIFFEL/studio/spec/$ISE_PLATFORM/bin
+ISE_EIFFEL=$EC_DIR/Eiffel_14.05
+ISE_PLATFORM=$EC_PLATFORM
+PATH=$PATH:$ISE_EIFFEL/studio/spec/$ISE_PLATFORM/bin
 
 # add to slug 
 cp -r $EC_DIR $BUILD_DIR
 
 echo "Eiffel Compiler installed" | indent
 
+echo "-----> Compiling"
+EC_CONFIG=$(find . -maxdepth 1 -name "*.ecf")
+EC_TARGET=$(sed -n 's/.*target name="\([A-z]*\).*/\1/p' <$EC_CONFIG)
 
-export EC_CONFIG=$(find . -maxdepth 1 -name "*.ecf")
-export EC_TARGET=$(sed -n 's/.*target name="\([A-z]*\).*/\1/p' <$EC_CONFIG)
-
+echo "-----> Compiling $EC_CONFIG for target $EC_TARGET"
 $ISE_EIFFEL/studio/spec/$ISE_PLATFORM/bin/ec -finalize -clean -config $EC_CONFIG -target $EC_TARGET
 ./EIFGENs/F_Code/finish_freezing
 
