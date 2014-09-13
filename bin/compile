@@ -61,6 +61,8 @@ EC_TARGET=$(sed -n 's/.*target name="\([A-z]*\).*/\1/p' <$EC_CONFIG | head -n 1)
 
 echo "-----> Compiling $EC_CONFIG for target $EC_TARGET"
 #$ISE_EIFFEL/studio/spec/$ISE_PLATFORM/bin/ec -finalize -clean -config $EC_CONFIG -target $EC_TARGET
+echo $ISE_LIBRARY
+echo $ISE_EIFFEL
 $ISE_EIFFEL/studio/spec/$ISE_PLATFORM/bin/ec -finalize -clean -config $EC_CONFIG -target restbucks
 ./EIFGENs/F_Code/finish_freezing
 
