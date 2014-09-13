@@ -35,7 +35,7 @@ if [ $RESET_CACHE ]; then
   rm -rf $CACHE_DIR/*
 fi
 
-EC_DIR="/app/estudio"
+EC_DIR="$CACHE_DIR/estudio"
 
 echo "-----> Installing Eiffel Compiler"
 if [ ! -d $EC_DIR ]; then
@@ -48,10 +48,8 @@ fi
 
 ISE_EIFFEL=$EC_DIR/Eiffel_14.05
 ISE_PLATFORM=$EC_PLATFORM
+ISE_LIBRARY=$ISE_EIFFEL/library
 PATH=$ISE_EIFFEL/studio/spec/$ISE_PLATFORM/bin:$PATH
-
-# add to slug 
-cp -r $EC_DIR $BUILD_DIR
 
 echo "Eiffel Compiler installed" | indent
 
@@ -62,7 +60,6 @@ EC_TARGET=$(sed -n 's/.*target name="\([A-z]*\).*/\1/p' <$EC_CONFIG | head -n 1)
 echo "-----> Compiling $EC_CONFIG for target $EC_TARGET"
 #$ISE_EIFFEL/studio/spec/$ISE_PLATFORM/bin/ec -finalize -clean -config $EC_CONFIG -target $EC_TARGET
 echo $ISE_LIBRARY
-echo $ISE_EIFFEL
 whereis ec
 ec -finalize -clean -config $EC_CONFIG -target restbucks
 ./EIFGENs/F_Code/finish_freezing
