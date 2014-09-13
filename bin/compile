@@ -63,7 +63,8 @@ echo "-----> Compiling $EC_CONFIG for target $EC_TARGET"
 #$ISE_EIFFEL/studio/spec/$ISE_PLATFORM/bin/ec -finalize -clean -config $EC_CONFIG -target $EC_TARGET
 echo $ISE_LIBRARY
 echo $ISE_EIFFEL
-$ISE_EIFFEL/studio/spec/$ISE_PLATFORM/bin/ec -finalize -clean -config $EC_CONFIG -target restbucks
+whereis ec
+ec -finalize -clean -config $EC_CONFIG -target restbucks
 ./EIFGENs/F_Code/finish_freezing
 
 #mkdir $CACHE_DIR/repos	     	      # should be under an if to avoid error
