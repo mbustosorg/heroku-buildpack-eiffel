@@ -44,10 +44,12 @@ if [ ! -d $EC_DIR ]; then
 	curl -L -O $EC_BUILD$EC_ARCHIVE 
 	tar jxf $EC_ARCHIVE -C $EC_DIR
 	rm -rf $EC_ARCHIVE
+	git clone https://github.com/EiffelWebFramework/EWF.git
 fi
 
 ISE_EIFFEL=$EC_DIR/Eiffel_14.05
 ISE_PLATFORM=$EC_PLATFORM
+EIFFEL_LIBRARY=$(pwd)/EWF
 PATH=$ISE_EIFFEL/studio/spec/$ISE_PLATFORM/bin:$PATH
 
 echo "Eiffel Compiler installed" | indent
@@ -62,7 +64,8 @@ echo $ISE_LIBRARY
 
 export ISE_EIFFEL
 export ISE_PLATFORM
-whereis ec
+export EIFFEL_LIBRARY
+
 ec -finalize -clean -config $EC_CONFIG -target restbucks
 ./EIFGENs/F_Code/finish_freezing
 
