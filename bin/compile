@@ -49,7 +49,7 @@ fi
 
 ISE_EIFFEL=$EC_DIR/Eiffel_14.05
 ISE_PLATFORM=$EC_PLATFORM
-EIFFEL_LIBRARY=$(pwd)/EWF
+EIFFEL_LIBRARY=/app/tmp/repo.git/EWF
 PATH=$ISE_EIFFEL/studio/spec/$ISE_PLATFORM/bin:$PATH
 
 echo "Eiffel Compiler installed" | indent
