@@ -44,8 +44,8 @@ if [ ! -d $EC_DIR ]; then
 	curl -L -O $EC_BUILD$EC_ARCHIVE 
 	tar jxf $EC_ARCHIVE -C $EC_DIR
 	rm -rf $EC_ARCHIVE
-	git clone https://github.com/EiffelWebFramework/EWF.git
 fi
+	git clone https://github.com/EiffelWebFramework/EWF.git
 
 ISE_EIFFEL=$EC_DIR/Eiffel_14.05
 ISE_PLATFORM=$EC_PLATFORM
