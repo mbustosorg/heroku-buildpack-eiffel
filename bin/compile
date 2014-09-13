@@ -35,7 +35,7 @@ if [ $RESET_CACHE ]; then
   rm -rf $CACHE_DIR/*
 fi
 
-EC_DIR="$CACHE_DIR/estudio"
+EC_DIR="/app/estudio"
 
 echo "-----> Installing Eiffel Compiler"
 if [ ! -d $EC_DIR ]; then
