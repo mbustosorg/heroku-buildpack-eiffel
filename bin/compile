@@ -49,8 +49,6 @@ ISE_EIFFEL=$EC_DIR/Eiffel_14.05
 ISE_PLATFORM=$EC_PLATFORM
 PATH=$ISE_EIFFEL/studio/spec/$ISE_PLATFORM/bin:$PATH
 
-EWF_LS=$(ls /app/tmp/cache/estudio/Eiffel_14.05/contrib/library/EWF)
-
 echo "Eiffel Compiler installed" | indent
 
 echo "-----> Compiling"
@@ -65,6 +63,7 @@ export ISE_EIFFEL
 export ISE_PLATFORM
 
 ec -finalize -clean -config $EC_CONFIG -target restbucks
+EWF_LS=$(ls)
 $BUILD_DIR/EIFGENs/F_Code/finish_freezing
 
 #mkdir $CACHE_DIR/repos	     	      # should be under an if to avoid error
