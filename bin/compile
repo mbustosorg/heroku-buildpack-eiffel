@@ -49,9 +49,9 @@ ISE_EIFFEL=$EC_DIR/Eiffel_14.05
 ISE_PLATFORM=$EC_PLATFORM
 PATH=$ISE_EIFFEL/studio/spec/$ISE_PLATFORM/bin:$PATH
 
-git clone https://github.com/EiffelWebFramework/EWF.git /app/tempEWF
-cp -R /app/tempEWF $ISE_EIFFEL/contrib/library
-git add $ISE_EIFFEL/contrib/library
+git clone https://github.com/EiffelWebFramework/EWF.git /app/EWF
+cp -R /app/EWF $ISE_EIFFEL/contrib/library
+#git add $ISE_EIFFEL/contrib/library
 
 EWF_LS=$(ls /app/tmp/cache/estudio/Eiffel_14.05/contrib/library/EWF)
 
