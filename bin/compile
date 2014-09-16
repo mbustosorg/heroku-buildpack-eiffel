@@ -45,10 +45,8 @@ if [ ! -d $EC_DIR ]; then
 	tar jxf $EC_ARCHIVE -C $EC_DIR
 	rm -rf $EC_ARCHIVE
 fi
-git clone https://github.com/EiffelWebFramework/EWF.git
-ls -l
-ls -l /app/tmp
-mv /app/tmp/repo.git/EWF $ISE_EIFFEL/contrib/library/EWF
+git clone https://github.com/EiffelWebFramework/EWF.git /app/ewfTemp
+mv /app/ewfTemp $ISE_EIFFEL/contrib/library/EWF
 
 ISE_EIFFEL=$EC_DIR/Eiffel_14.05
 ISE_PLATFORM=$EC_PLATFORM
