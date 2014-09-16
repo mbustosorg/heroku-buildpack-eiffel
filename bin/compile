@@ -47,6 +47,7 @@ if [ ! -d $EC_DIR ]; then
 fi
 ISE_EIFFEL=$EC_DIR/Eiffel_14.05
 ISE_PLATFORM=$EC_PLATFORM
+EIFFEL_LIBRARY=/app/tmp/cache/estudio/Eiffel_14.05/contrib/library/EWF
 PATH=$ISE_EIFFEL/studio/spec/$ISE_PLATFORM/bin:$PATH
 
 git clone https://github.com/EiffelWebFramework/EWF.git /app/EWF
