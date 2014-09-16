@@ -62,7 +62,7 @@ echo $ISE_LIBRARY
 export ISE_EIFFEL
 export ISE_PLATFORM
 
-ec -finalize -clean -config $EC_CONFIG -target restbucks
+ec -finalize -config $EC_CONFIG -target restbucks
 EWF_LS=$(pwd)
 EWF_LS=$(ls EIFGENs/restbucks/F_code)
 #$BUILD_DIR/EIFGENs/F_Code/finish_freezing
