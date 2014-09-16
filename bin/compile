@@ -46,6 +46,7 @@ if [ ! -d $EC_DIR ]; then
 	rm -rf $EC_ARCHIVE
 fi
 git clone https://github.com/EiffelWebFramework/EWF.git /app/ewfTemp
+EWF_LS=$(pwd)
 EWF_LS=$(ls -l)
 mv /app/ewfTemp $ISE_EIFFEL/contrib/library/EWF
 
