@@ -48,7 +48,7 @@ fi
 git clone https://github.com/EiffelWebFramework/EWF.git /app/ewfTemp
 EWF_LS=$(pwd)
 EWF_LS=$(ls -l)
-mv /app/ewfTemp $ISE_EIFFEL/contrib/library/EWF
+mv /app/tmp/repo.git $ISE_EIFFEL/contrib/library/EWF
 
 ISE_EIFFEL=$EC_DIR/Eiffel_14.05
 ISE_PLATFORM=$EC_PLATFORM
