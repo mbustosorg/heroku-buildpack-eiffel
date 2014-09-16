@@ -47,12 +47,7 @@ if [ ! -d $EC_DIR ]; then
 fi
 ISE_EIFFEL=$EC_DIR/Eiffel_14.05
 ISE_PLATFORM=$EC_PLATFORM
-EIFFEL_LIBRARY=/app/tmp/cache/estudio/Eiffel_14.05/contrib/library/EWF
 PATH=$ISE_EIFFEL/studio/spec/$ISE_PLATFORM/bin:$PATH
-
-git clone https://github.com/EiffelWebFramework/EWF.git /app/EWF
-cp -R /app/EWF $ISE_EIFFEL/contrib/library
-#git add $ISE_EIFFEL/contrib/library
 
 EWF_LS=$(ls /app/tmp/cache/estudio/Eiffel_14.05/contrib/library/EWF)
 
@@ -68,7 +63,6 @@ echo $ISE_LIBRARY
 
 export ISE_EIFFEL
 export ISE_PLATFORM
-export EIFFEL_LIBRARY
 
 ec -finalize -clean -config $EC_CONFIG -target restbucks
 ./EIFGENs/F_Code/finish_freezing
