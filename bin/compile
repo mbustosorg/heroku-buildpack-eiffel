@@ -65,7 +65,7 @@ export ISE_EIFFEL
 export ISE_PLATFORM
 
 ec -finalize -clean -config $EC_CONFIG -target restbucks
-./EIFGENs/F_Code/finish_freezing
+$BUILD_DIR/EIFGENs/F_Code/finish_freezing
 
 #mkdir $CACHE_DIR/repos	     	      # should be under an if to avoid error
 #pushd $CACHE_DIR/repos
