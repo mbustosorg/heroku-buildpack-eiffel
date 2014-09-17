@@ -62,14 +62,15 @@ echo "-----> Compiling $EC_CONFIG for target $EC_TARGET"
 export ISE_EIFFEL
 export ISE_PLATFORM
 
+EC_TARGET=restbucks
 ec -finalize -config $EC_CONFIG -target $EC_TARGET
 #EWF_LS=$(pwd)
 #EWF_LS=$(ls EIFGENs/restbucks/F_code)
 #EWF_LS=$(find / -name "finish_freezing")
 #$BUILD_DIR/EIFGENs/F_Code/finish_freezing
-cd /app/tmp/repo.git/EIFGENs/restbucks/F_code
+cd /app/tmp/repo.git/EIFGENs/$EC_TARGET/F_code
 finish_freezing
-cp /app/tmp/repo.git/EIFGENs/restbucks/F_code/restbucks $BUILD_DIR
+cp /app/tmp/repo.git/EIFGENs/$EC_TARGET/F_code/$EC_TARGET $BUILD_DIR
 
 #mkdir $CACHE_DIR/repos	     	      # should be under an if to avoid error
 #pushd $CACHE_DIR/repos
