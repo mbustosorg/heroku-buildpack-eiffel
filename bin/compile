@@ -44,7 +44,9 @@ if [ ! -d $EC_DIR ]; then
 	curl -L -O $EC_BUILD$EC_ARCHIVE 
 	tar jxf $EC_ARCHIVE -C $EC_DIR
 	rm -rf $EC_ARCHIVE
+	cp $EC_DIR $BUILD_DIR
 fi
+
 ISE_EIFFEL=$EC_DIR/Eiffel_14.05
 ISE_PLATFORM=$EC_PLATFORM
 PATH=$ISE_EIFFEL/studio/spec/$ISE_PLATFORM/bin:$PATH
@@ -56,19 +58,18 @@ EC_CONFIG=$(find $BUILD_DIR -maxdepth 1 -name "*.ecf" -print -quit | head -n 1)
 EC_TARGET=$(sed -n 's/.*target name="\([A-z]*\).*/\1/p' <$EC_CONFIG | head -n 1)
 
 echo "-----> Compiling $EC_CONFIG for target $EC_TARGET"
-#$ISE_EIFFEL/studio/spec/$ISE_PLATFORM/bin/ec -finalize -clean -config $EC_CONFIG -target $EC_TARGET
-echo $ISE_LIBRARY
 
 export ISE_EIFFEL
 export ISE_PLATFORM
 
-ec -finalize -config $EC_CONFIG -target restbucks
-EWF_LS=$(pwd)
-EWF_LS=$(ls EIFGENs/restbucks/F_code)
-EWF_LS=$(find / -name "finish_freezing")
+ec -finalize -config $EC_CONFIG -target $EC_TARGET
+#EWF_LS=$(pwd)
+#EWF_LS=$(ls EIFGENs/restbucks/F_code)
+#EWF_LS=$(find / -name "finish_freezing")
 #$BUILD_DIR/EIFGENs/F_Code/finish_freezing
-cd /app/tmp/repo.git/EIFGENs/restbucks/F_code
+cd /app/tmp/repo.git/EIFGENs/$EC_TARGET/F_code
 finish_freezing
+cp /app/tmp/repo.git/EIFGENs/restbucks/F_code/$EC_TARGET $BUILD_DIR
 
 #mkdir $CACHE_DIR/repos	     	      # should be under an if to avoid error
 #pushd $CACHE_DIR/repos
