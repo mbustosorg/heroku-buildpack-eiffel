@@ -56,13 +56,13 @@ echo "Eiffel Compiler installed" | indent
 echo "-----> Compiling"
 EC_CONFIG=$(find $BUILD_DIR -maxdepth 1 -name "*.ecf" -print -quit | head -n 1)
 EC_TARGET=$(sed -n 's/.*target name="\([A-z]*\).*/\1/p' <$EC_CONFIG | head -n 1)
+EC_TARGET=restbucks
 
 echo "-----> Compiling $EC_CONFIG for target $EC_TARGET"
 
 export ISE_EIFFEL
 export ISE_PLATFORM
 
-EC_TARGET=restbucks
 ec -finalize -config $EC_CONFIG -target $EC_TARGET
 #EWF_LS=$(pwd)
 #EWF_LS=$(ls EIFGENs/restbucks/F_code)
@@ -71,6 +71,7 @@ ec -finalize -config $EC_CONFIG -target $EC_TARGET
 cd /app/tmp/repo.git/EIFGENs/$EC_TARGET/F_code
 finish_freezing
 cp /app/tmp/repo.git/EIFGENs/$EC_TARGET/F_code/$EC_TARGET $BUILD_DIR
+cp /app/tmp/repo.git/EIFGENs/$EC_TARGET/F_code/$EC_TARGET $CACHE_DIR
 
 #mkdir $CACHE_DIR/repos	     	      # should be under an if to avoid error
 #pushd $CACHE_DIR/repos
