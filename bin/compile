@@ -70,9 +70,9 @@ ec -finalize -config $EC_CONFIG -target $EC_TARGET
 #$BUILD_DIR/EIFGENs/F_Code/finish_freezing
 cd /app/tmp/repo.git/EIFGENs/$EC_TARGET/F_code
 finish_freezing
+chmod a+x $EC_TARGET
 cp $EC_TARGET $BUILD_DIR
 cd $BUILD_DIR
-chmod a+x $BUILD_DIR/$EC_TARGET
 
 #mkdir $CACHE_DIR/repos	     	      # should be under an if to avoid error
 #pushd $CACHE_DIR/repos
