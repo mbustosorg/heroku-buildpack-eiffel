@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # bin/compile <build-dir> <cache-dir>
 
-set -x
+#set -x
 
 mktmpdir() {
   dir=$(mktemp -t node-$1-XXXX)
@@ -37,9 +37,9 @@ fi
 
 EC_DIR="$CACHE_DIR/estudio"
 
-echo "-----> Installing Eiffel Compiler"
+echo "-----> Checking Eiffel Compiler"
 if [ ! -d $EC_DIR ]; then
-    echo "-----> Fetching Eiffel Compiler"
+    echo "Fetching Eiffel Compiler" | indent
     mkdir -p $EC_DIR
 	curl -L -O $EC_BUILD$EC_ARCHIVE 
 	tar jxf $EC_ARCHIVE -C $EC_DIR
@@ -53,7 +53,6 @@ PATH=$ISE_EIFFEL/studio/spec/$ISE_PLATFORM/bin:$PATH
 
 echo "Eiffel Compiler installed" | indent
 
-echo "-----> Compiling"
 EC_CONFIG=$(find $BUILD_DIR -maxdepth 1 -name "*.ecf" -print -quit | head -n 1)
 EC_TARGET=$(sed -n 's/.*target name="\([A-z]*\).*/\1/p' <$EC_CONFIG | head -n 1)
 EC_TARGET=restbucks
@@ -64,46 +63,10 @@ export ISE_EIFFEL
 export ISE_PLATFORM
 
 ec -finalize -config $EC_CONFIG -target $EC_TARGET
-#EWF_LS=$(pwd)
-#EWF_LS=$(ls EIFGENs/restbucks/F_code)
-#EWF_LS=$(find / -name "finish_freezing")
-#$BUILD_DIR/EIFGENs/F_Code/finish_freezing
+
 cd /app/tmp/repo.git/EIFGENs/$EC_TARGET/F_code
 finish_freezing
 chmod a+x $EC_TARGET
 cp $EC_TARGET $BUILD_DIR
 cd $BUILD_DIR
 
-#mkdir $CACHE_DIR/repos	     	      # should be under an if to avoid error
-#pushd $CACHE_DIR/repos
-
-#if [ -d $CACHE_DIR/repos/portableaserve ]; then
-#     echo 'aserve already present'
-#     pushd portableaserve
-#     git pull origin master
-#     popd
-#else 
-#    git clone git://github.com/mtravers/portableaserve.git
-#fi
-
-#if [ -d $CACHE_DIR/repos/wuwei ]; then
-#     echo 'wuwei already present'
-#     pushd wuwei
-#    git pull origin master
-#     popd
-#else 
-#    git clone git://github.com/mtravers/wuwei.git
-#fi
-
-#popd
-
-#export BUILDPACK_DIR
-#export CACHE_DIR
-#export BUILD_DIR
-#export CCL_DEFAULT_DIRECTORY=$EC_DIR
-
-#echo "-----> Starting build"
-#$CCL_DEFAULT_DIRECTORY/scripts/ccl64 -l "$BUILDPACK_DIR/setup/compile.lisp"
-#echo "-----> Build finished"
-
-#chmod a+x $BUILD_DIR/lispapp
