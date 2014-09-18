@@ -1,15 +1,14 @@
 Heroku Buildpack for Eiffel
 ================================
 
-A Buildpack that allows you to deploy Eiffel applications on the Heroku infrastructure.
+A Buildpack that allows you to deploy Eiffel applications on the Heroku platform.
 
 ## Status
-* Working to first approximation.
-* For a minimal example of use, see [the example application](https://github.com/mtravers/heroku-cl-example).
-* For a more complex example, see [the WuWei demo site](http://wuwei.name/) and [source](https://github.com/mtravers/wuwei).
+* Working for simple ECFs
 
 ## Notes
 * A Procfile is required for execution.  Make sure the application accepts the `$PORT` argument for HTTP routing.
+* Use the [nino server][https://github.com/Eiffel-World/Eiffel-Web-Framework/tree/master/contrib/library/network/server/nino] to provide HTTP access.
 
 ## Todo
 * Currently only the first target in the ecf is used to determine what application to deploy.  This needs to be parameterized.
