@@ -8,7 +8,7 @@ A Buildpack that allows you to deploy Eiffel applications on the Heroku platform
 
 ## Notes
 * A Procfile is required for execution.  Make sure the application accepts the `$PORT` argument for HTTP routing.
-* Use the [nino server][https://github.com/Eiffel-World/Eiffel-Web-Framework/tree/master/contrib/library/network/server/nino] to provide HTTP access.
+* Use the [nino server](https://github.com/Eiffel-World/Eiffel-Web-Framework/tree/master/contrib/library/network/server/nino) to provide HTTP access.
 
 ## Todo
 * Currently only the first target in the ecf is used to determine what application to deploy.  This needs to be parameterized.
