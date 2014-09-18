@@ -18,7 +18,7 @@ A Buildpack that allows you to deploy Eiffel applications on the Heroku platform
 * Heroku and their new [Buildpack-capable stack](http://devcenter.heroku.com/articles/buildpacks)
 
 ## Usage
-Push the app to Heroku. Learn more about [deploying to Heroku with git][deploy].
+Push the app to Heroku. Learn more about [deploying to Heroku with git](https://devcenter.heroku.com/articles/git).
 
 ```bash
 $ git push heroku master
@@ -96,7 +96,7 @@ To git@heroku.com:peaceful-meadow-3723.git
 Scale to one web dyno (aka server):
 
 ```bash
-$> heroku ps:scale  web=1
+$ heroku ps:scale web=1
 ```
 
 Test your app! The URL is printed at the end of the `git push` step.
