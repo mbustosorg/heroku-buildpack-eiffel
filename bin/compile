@@ -23,7 +23,7 @@ function export_env_dir() {
   if [ -d "$ENV_DIR" ]; then
     for e in $(ls $ENV_DIR); do
       echo "$e" | grep -qvE "$blacklist_regex" &&
-      export "$e=$(cat $env_dir/$e)"
+      export "$e=$(cat $ENV_DIR/$e)"
       :
     done
   fi
