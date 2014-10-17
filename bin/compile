@@ -18,6 +18,19 @@ function indent() {
   esac
 }
 
+function export_env_dir() {
+  env_dir=$1
+  whitelist_regex=${2:-''}
+  blacklist_regex=${3:-'^(PATH|GIT_DIR|CPATH|CPPATH|LD_PRELOAD|LIBRARY_PATH)$'}
+  if [ -d "$env_dir" ]; then
+    for e in $(ls $env_dir); do
+      echo "$e" | grep -E "$whitelist_regex" | grep -qvE "$blacklist_regex" &&
+      export "$e=$(cat $env_dir/$e)"
+      :
+    done
+  fi
+}
+
 # parse and derive params
 #EC_PLATFORM=macosx-x86-64
 EC_PLATFORM=linux-x86-64
@@ -27,6 +40,8 @@ BUILDPACK_DIR=$(cd $(dirname $0); cd ..; pwd) # absolute path of buildpack
 BUILD_DIR=$1
 CACHE_DIR=$2
 ENV_DIR=$3
+
+export_env_dir
 
 echo "-----> compile params: $BUILD_DIR $CACHE_DIR $ENV_DIR"
 
@@ -53,9 +68,16 @@ PATH=$ISE_EIFFEL/studio/spec/$ISE_PLATFORM/bin:$PATH
 
 echo "Eiffel Compiler installed" | indent
 
-EC_CONFIG=$(find $BUILD_DIR -maxdepth 1 -name "*.ecf" -print -quit | head -n 1)
-EC_TARGET=$(sed -n 's/.*target name="\([A-z]*\).*/\1/p' <$EC_CONFIG | head -n 1)
-EC_TARGET=restbucks
+if [ ! $EC_CONFIG ]; then
+	EC_CONFIG=$(find $BUILD_DIR -maxdepth 1 -name "*.ecf" -print -quit | head -n 1)
+else
+	echo "Using defined ecf " $EC_CONFIG | indent
+fi 
+if [ ! $EC_TARGET ]; then
+	EC_TARGET=$(sed -n 's/.*target name="\([A-z]*\).*/\1/p' <$EC_CONFIG | head -n 1)
+else
+	echo "Using defined target " $EC_TARGET | indent
+fi
 
 echo "-----> Compiling $EC_CONFIG for target $EC_TARGET"
 
