@@ -66,11 +66,12 @@ PATH=$ISE_EIFFEL/studio/spec/$ISE_PLATFORM/bin:$PATH
 
 echo "Eiffel Compiler installed" | indent
  
-#if [ ! $EC_CONFIG ]; then
+if [ ! $EC_CONFIG ]; then
 	EC_CONFIG=$(find $BUILD_DIR -maxdepth 1 -name "*.ecf" -print -quit | head -n 1)
-#else
+else
 	echo "Using defined ecf " $EC_CONFIG | indent
-#fi 
+	EC_CONFIG=$BUILD_DIR/$EC_CONFIG
+fi 
 if [ ! $EC_TARGET ]; then
 	EC_TARGET=$(sed -n 's/.*target name="\([A-z]*\).*/\1/p' <$EC_CONFIG | head -n 1)
 else
