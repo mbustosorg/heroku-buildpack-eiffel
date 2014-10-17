@@ -4,20 +4,32 @@ Heroku Buildpack for Eiffel
 A Buildpack that allows you to deploy Eiffel applications on the Heroku platform.
 
 ## Status
-* Working for simple ECFs
+* Working for repositories with multiple, multi-target ECFs
 
 ## Notes
 * A Procfile is required for execution.  Make sure the application accepts the `$PORT` argument for HTTP routing.
 * Use the [nino server](https://github.com/Eiffel-World/Eiffel-Web-Framework/tree/master/contrib/library/network/server/nino) to provide HTTP access.
 
 ## Todo
-* Currently only the first target in the ecf is used to determine what application to deploy.  This needs to be parameterized.
 * There is currently no accommodation for Heroku addons.
 
 ## Credits
 * Heroku and their new [Buildpack-capable stack](http://devcenter.heroku.com/articles/buildpacks)
 
 ## Usage
+Set the buildpack for the project
+
+```bash
+$ heroku config:set BUILDPACK_URL=https://github.com/mbustosorg/heroku-buildpack-eiffel
+```
+
+The buildpack will select and build the first ECF and target found in the repository.  You can set a specific ECF and target if you wish by setting the $EC_CONFIG and $EC_TARGET variables.
+
+```bash
+$ heroku config:set EC_CONFIG=restbucks-safe.ecf
+$ heroku config:set EC_TARGET=restbucks
+```
+
 Push the app to Heroku. Learn more about [deploying to Heroku with git](https://devcenter.heroku.com/articles/git).
 
 ```bash
