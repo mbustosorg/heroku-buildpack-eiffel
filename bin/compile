@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # bin/compile <build-dir> <cache-dir> <env-dir>
 
-set -x
+#set -x
 
 mktmpdir() {
   dir=$(mktemp -t node-$1-XXXX)
@@ -85,7 +85,7 @@ export ISE_PLATFORM
 export KI_SOURCE=$BUILD_DIR/navigator-server
 pwd
 
-ec -finalize -config $EC_CONFIG -target $EC_TARGET
+ec -finalize -config $EC_CONFIG -target $EC_TARGET -clean -batch
 
 cd /app/tmp/repo.git/EIFGENs/$EC_TARGET/F_code
 finish_freezing
