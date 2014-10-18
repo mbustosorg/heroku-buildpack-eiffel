@@ -82,7 +82,7 @@ echo "-----> Compiling $EC_CONFIG for target $EC_TARGET"
 
 export ISE_EIFFEL
 export ISE_PLATFORM
-export KI_SOURCE
+export KI_SOURCE=$BUILD_DIR/navigator-server
 pwd
 
 ec -finalize -config $EC_CONFIG -target $EC_TARGET
