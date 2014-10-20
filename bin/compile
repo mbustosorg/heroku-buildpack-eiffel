@@ -69,8 +69,8 @@ fi
 pushd .
 ls -lah $CACHE_DIR/apt
 ls -lah $BUILD_DIR
-cp $BUILD_DIR/.apt/usr/include/sql.h /usr/include/
-cp $BUILD_DIR/.apt/usr/lib/libodbc.a /usr/lib/
+CFLAGS=$BUILD_DIR/.apt/usr/include
+export CFLAGS
 cd $ISE_EIFFEL/library/store/dbms/rdbms/odbc/Clib
 finish_freezing -library
 popd
