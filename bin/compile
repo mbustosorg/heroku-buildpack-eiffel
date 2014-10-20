@@ -69,7 +69,7 @@ fi
 pushd .
 ls -lah $CACHE_DIR/apt
 ls -lah $BUILD_DIR
-CFLAGS=-I$BUILD_DIR/.apt/usr/include -L$BUILD_DIR/.apt/usr/lib
+CFLAGS="-I$BUILD_DIR/.apt/usr/include -L$BUILD_DIR/.apt/usr/lib"
 export CFLAGS
 cd $ISE_EIFFEL/library/store/dbms/rdbms/odbc/Clib
 finish_freezing -library
