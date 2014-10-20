@@ -67,10 +67,10 @@ if [ ! -d $EC_DIR ]; then
 fi
 
 pushd .
-ls -lah $CACHE_DIR
+ls -lah $CACHE_DIR/apt
 ls -lah $BUILD_DIR
-cp $CACHE_DIR/apt/usr/include/sql.h /usr/include/
-cp $CACHE_DIR//usr/lib/libodbc.a /usr/lib/
+cp $BUILD_DIR/apt/usr/include/sql.h /usr/include/
+cp $BUILD_DIR/apt/usr/lib/libodbc.a /usr/lib/
 cd $ISE_EIFFEL/library/store/dbms/rdbms/odbc/Clib
 finish_freezing -library
 popd
