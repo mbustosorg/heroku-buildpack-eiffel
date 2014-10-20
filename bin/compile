@@ -66,9 +66,6 @@ if [ ! -d $EC_DIR ]; then
 	cp $EC_DIR $BUILD_DIR
 fi
 
-apt-get update
-apt-get install unixodbc-dev
-
 pushd .
 cd $ISE_EIFFEL/library/store/dbms/rdbms/odbc/Clib
 finish_freezing -library
