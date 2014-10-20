@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # bin/compile <build-dir> <cache-dir> <env-dir>
 
-set -x
+#set -x
 
 mktmpdir() {
   dir=$(mktemp -t node-$1-XXXX)
@@ -64,16 +64,13 @@ if [ ! -d $EC_DIR ]; then
 	tar jxf $EC_ARCHIVE -C $EC_DIR
 	rm -rf $EC_ARCHIVE
 	cp $EC_DIR $BUILD_DIR
+	pushd .
+	CFLAGS="-I$BUILD_DIR/.apt/usr/include -L$BUILD_DIR/.apt/usr/lib"
+	export CFLAGS
+	cd $ISE_EIFFEL/library/store/dbms/rdbms/odbc/Clib
+	finish_freezing -library
+	popd
 fi
-
-pushd .
-ls -lah $CACHE_DIR/apt
-ls -lah $BUILD_DIR
-CFLAGS="-I$BUILD_DIR/.apt/usr/include -L$BUILD_DIR/.apt/usr/lib"
-export CFLAGS
-cd $ISE_EIFFEL/library/store/dbms/rdbms/odbc/Clib
-finish_freezing -library
-popd
 
 echo "Eiffel Compiler installed" | indent
  
