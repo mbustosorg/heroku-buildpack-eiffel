@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # bin/compile <build-dir> <cache-dir> <env-dir>
 
-#set -x
+set -x
 
 mktmpdir() {
   dir=$(mktemp -t node-$1-XXXX)
@@ -64,8 +64,8 @@ if [ ! -d $EC_DIR ]; then
 	cp $EC_DIR $BUILD_DIR
 fi
 
-sudo apt-get update
-sudo apt-get install unixodbc-dev
+apt-get update
+apt-get install unixodbc-dev
 
 pushd .
 cd $ISE_EIFFEL/library/store/dbms/rdbms/odbc/Clib
