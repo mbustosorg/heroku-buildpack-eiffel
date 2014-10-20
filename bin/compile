@@ -67,7 +67,8 @@ if [ ! -d $EC_DIR ]; then
 fi
 
 pushd .
-ls -lah
+ls -lah $CACHE_DIR
+ls -lah $BUILD_DIR
 cp /app/.apt/usr/include/sql.h /usr/include/
 cp /app/.apt/usr/lib/libodbc.a /usr/lib/
 cd $ISE_EIFFEL/library/store/dbms/rdbms/odbc/Clib
