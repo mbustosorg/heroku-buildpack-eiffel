@@ -53,6 +53,8 @@ EC_DIR="$CACHE_DIR/estudio"
 ISE_EIFFEL=$EC_DIR/Eiffel_14.05
 ISE_PLATFORM=$EC_PLATFORM
 PATH=$ISE_EIFFEL/studio/spec/$ISE_PLATFORM/bin:$PATH
+export ISE_EIFFEL
+export ISE_PLATFORM
 
 echo "-----> Checking Eiffel Compiler"
 if [ ! -d $EC_DIR ]; then
@@ -88,8 +90,6 @@ fi
 
 echo "-----> Compiling $EC_CONFIG for target $EC_TARGET"
 
-export ISE_EIFFEL
-export ISE_PLATFORM
 export KI_SOURCE=$BUILD_DIR/navigator-server
 pwd
 
