@@ -5,6 +5,7 @@ A Buildpack that allows you to deploy Eiffel applications on the Heroku platform
 
 ## Status
 * Working for repositories with multiple, multi-target ECFs
+* Only builds libraries for ODBC
 
 ## Notes
 * A Procfile is required for execution.  Make sure the application accepts the `$PORT` argument for HTTP routing.
