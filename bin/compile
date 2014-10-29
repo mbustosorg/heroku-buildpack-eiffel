@@ -101,7 +101,7 @@ pwd
 
 ec -finalize -config $EC_CONFIG -target $EC_TARGET -clean -batch
 
-cd /app/tmp/repo.git/EIFGENs/$EC_TARGET/F_code
+cd EIFGENs/$EC_TARGET/F_code
 finish_freezing
 chmod a+x $EC_TARGET
 cp $EC_TARGET $BUILD_DIR
