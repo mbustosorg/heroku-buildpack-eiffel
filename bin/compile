@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # bin/compile <build-dir> <cache-dir> <env-dir>
 
-#set -x
+set -x
 
 mktmpdir() {
   dir=$(mktemp -t node-$1-XXXX)
@@ -57,6 +57,10 @@ export ISE_EIFFEL
 export ISE_PLATFORM
 CFLAGS="-I$BUILD_DIR/.apt/usr/include -L$BUILD_DIR/.apt/usr/lib"
 export CFLAGS
+MYSQLINC=/usr/include/mysql
+export MYSQLINC
+MYSQLLIB=/usr/lib/x86_64-linux-gnu
+export MYSQLLIB
 
 echo "-----> Checking Eiffel Compiler"
 if [ ! -d $EC_DIR ]; then
@@ -68,6 +72,10 @@ if [ ! -d $EC_DIR ]; then
 	cp $EC_DIR $BUILD_DIR
 	pushd .
 	cd $ISE_EIFFEL/library/store/dbms/rdbms/odbc/Clib
+	finish_freezing -library
+	popd
+	pushd .
+	cd $ISE_EIFFEL/library/store/dbms/rdbms/mysql/Clib
 	finish_freezing -library
 	popd
 fi
