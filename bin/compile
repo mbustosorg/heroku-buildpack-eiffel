@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # bin/compile <build-dir> <cache-dir> <env-dir>
 
-set -x
+#set -x
 
 mktmpdir() {
   dir=$(mktemp -t node-$1-XXXX)
