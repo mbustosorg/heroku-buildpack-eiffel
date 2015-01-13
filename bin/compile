@@ -70,13 +70,6 @@ if [ ! -d $EC_DIR ]; then
 	tar jxf $EC_ARCHIVE -C $EC_DIR
 	rm -rf $EC_ARCHIVE
 	cp $EC_DIR $BUILD_DIR
-	apt-get update
-	apt-get install unixodbc-dev
-	apt-get install mysql-server
-	apt-get install libmysqlclient-dev
-	apt-get install libxtst-dev
-	apt-get libgtk2.0-dev
-	apt-get zlib1g-dev
 	pushd .
 	cd $ISE_EIFFEL/library/store/dbms/rdbms/odbc/Clib
 	finish_freezing -library
