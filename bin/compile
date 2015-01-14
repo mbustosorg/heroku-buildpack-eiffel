@@ -62,13 +62,6 @@ export MYSQLINC
 MYSQLLIB=/usr/lib/x86_64-linux-gnu
 export MYSQLLIB
 
-ls -lah $BUILD_DIR/.apt/usr/lib
-
-ls -lah /usr/lib
-
-echo '$LD_LIBRARY_PATH'
-echo $LD_LIBRARY_PATH
-
 echo "-----> Checking Eiffel Compiler"
 if [ ! -d $EC_DIR ]; then
     echo "Fetching Eiffel Compiler" | indent
@@ -109,6 +102,13 @@ pwd
 ec -finalize -config $EC_CONFIG -target $EC_TARGET -clean -batch
 
 cd EIFGENs/$EC_TARGET/F_code
+
+ls -lah $BUILD_DIR/.apt/usr/lib
+ls -lah /usr/lib
+export LD_LIBRARY_PATH=/usr/lib
+echo '$LD_LIBRARY_PATH'
+echo $LD_LIBRARY_PATH
+
 finish_freezing
 chmod a+x $EC_TARGET
 cp $EC_TARGET $BUILD_DIR
