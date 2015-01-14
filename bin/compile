@@ -105,7 +105,7 @@ cd EIFGENs/$EC_TARGET/F_code
 
 ls -lah $BUILD_DIR/.apt/usr/lib
 ls -lah /usr/lib
-export LD_LIBRARY_PATH=/usr/lib
+export ldflags=/usr/lib
 echo '$LD_LIBRARY_PATH'
 echo $LD_LIBRARY_PATH
 
