@@ -62,6 +62,8 @@ export MYSQLINC
 MYSQLLIB=/usr/lib/x86_64-linux-gnu
 export MYSQLLIB
 
+ls -lah $BUILD_DIR/.apt/user/lib
+
 echo "-----> Checking Eiffel Compiler"
 if [ ! -d $EC_DIR ]; then
     echo "Fetching Eiffel Compiler" | indent
@@ -69,7 +71,7 @@ if [ ! -d $EC_DIR ]; then
 	curl -L -O $EC_BUILD$EC_ARCHIVE 
 	tar jxf $EC_ARCHIVE -C $EC_DIR
 	rm -rf $EC_ARCHIVE
-	cp $EC_DIR $BUILD_DIR
+#	cp $EC_DIR $BUILD_DIR
 	pushd .
 	cd $ISE_EIFFEL/library/store/dbms/rdbms/odbc/Clib
 	finish_freezing -library
