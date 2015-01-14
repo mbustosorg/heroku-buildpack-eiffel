@@ -62,7 +62,7 @@ export MYSQLINC
 MYSQLLIB=/usr/lib/x86_64-linux-gnu
 export MYSQLLIB
 
-ls -lah $BUILD_DIR/.apt/user/lib
+ls -lah $BUILD_DIR/.apt/usr/lib
 
 echo "-----> Checking Eiffel Compiler"
 if [ ! -d $EC_DIR ]; then
