@@ -64,6 +64,11 @@ export MYSQLLIB
 
 ls -lah $BUILD_DIR/.apt/usr/lib
 
+ls -lah /usr/lib
+
+echo '$LD_LIBRARY_PATH'
+echo $LD_LIBRARY_PATH
+
 echo "-----> Checking Eiffel Compiler"
 if [ ! -d $EC_DIR ]; then
     echo "Fetching Eiffel Compiler" | indent
