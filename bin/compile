@@ -103,6 +103,7 @@ ec -finalize -config $EC_CONFIG -target $EC_TARGET -clean -batch
 
 cd EIFGENs/$EC_TARGET/F_code
 
+cp Makefile* $BUILD_DIR
 ls -lah $BUILD_DIR/.apt/usr/lib
 ls -lah /usr/lib
 export ldflags=/usr/lib
